@@ -1,0 +1,119 @@
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBoards (20130630002947)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "boards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (24.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130630002947"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLists (20130630003017)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "rank" integer NOT NULL, "board_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130630003017"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCards (20130630003035)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text, "rank" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130630003035"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddListIdToCards (20130630010132)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "cards" ADD "list_id" integer NOT NULL[0m
+SQLite3::SQLException: Cannot add a NOT NULL column with default value NULL: ALTER TABLE "cards" ADD "list_id" integer NOT NULL
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "board_assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "board_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "boards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "card_assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "card_id" integer NOT NULL, "user_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "description" text, "rank" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "list_id" integer NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) NOT NULL, "rank" integer NOT NULL, "board_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "todo_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "card_id" integer NOT NULL, "done" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "title" varchar(255) NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "password_digest" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "session_token" varchar(255)) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130708183619')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130630002947')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130630003017')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130630003035')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130630010132')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130701024412')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130701024454')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130701025625')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130701043856')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130705214313')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130705215022')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'simis1000@gmail.com' LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (24.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["email", "simis1000@gmail.com"], ["password_digest", "$2a$10$oulHsRfrZK7SzUAXTgOO/uJLVtyYWz.ED1fSq6PBhAeUXWa6pJ1Ke"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "boards" ("created_at", "title", "updated_at") VALUES (?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["title", "Home"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "boards" ("created_at", "title", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["title", "Work"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mBoard Load (0.2ms)[0m  [1mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? ORDER BY "boards"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "board_assignments" ("board_id", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["board_id", 1], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["user_id", 1]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mBoard Load (0.0ms)[0m  SELECT "boards".* FROM "boards" WHERE "boards"."id" = ? ORDER BY "boards"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "board_assignments" ("board_id", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["board_id", 2], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["user_id", 1]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["board_id", 1], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 1], ["title", "To Do"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["board_id", 1], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 2], ["title", "Doing"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["board_id", 1], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 3], ["title", "Done"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["board_id", 2], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 1], ["title", "Urgent"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["board_id", 2], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 2], ["title", "Important"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "lists" ("board_id", "created_at", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["board_id", 2], ["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["rank", 3], ["title", "Optional"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 1], ["rank", 1], ["title", "Clean dishes"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 1], ["rank", 2], ["title", "Mop kitchen"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 2], ["rank", 1], ["title", "Fix back door"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 3], ["rank", 1], ["title", "Water plants"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 3], ["rank", 2], ["title", "Fold sheets"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 4], ["rank", 1], ["title", "Prepare earnings spreadsheet"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 4], ["rank", 2], ["title", "Build sales presentation"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 5], ["rank", 1], ["title", "Find new accountant"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 5], ["rank", 2], ["title", "Look into bigger office space"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 6], ["rank", 1], ["title", "Review workflows"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cards" ("created_at", "list_id", "rank", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00], ["list_id", 6], ["rank", 2], ["title", "Redecorate conference room"], ["updated_at", Fri, 14 Mar 2014 16:33:49 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
