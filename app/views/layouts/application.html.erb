@@ -16,6 +16,12 @@
       </ul>
     </div>
   </nav>
+  <% if flash.now[:errors] %>
+   <% flash.now[:errors].each do |error| %>
+     <%= error %>
+   <% end %>
+  <% end %>
+
   <%= yield %>
 
 <div class="overlay hidden">

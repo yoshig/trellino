@@ -1,0 +1,11 @@
+<% if (list) { %>
+<form>
+  <label for="title">List Title</label>
+  <input type="text" name="title" id="title" value="<%= list.escape("title") %>">
+  <input type="hidden" name="rank" value="<%= board.length + 1 %>">
+  <input type="hidden" name="rank" value="<%= board.length + 1 %>">
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>
+
+<% } %>

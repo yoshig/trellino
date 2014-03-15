@@ -1,0 +1,15 @@
+<%= board.escape("title") %>
+<a href="#/boards/<%= board.escape("id") %>/edit">Edit This Board</a>
+
+<ul>
+<% board.lists().forEach(function(list) { %>
+  <li><a href="#<%= list.url() %>"><%= list.escape("title") %></a></li>
+<% }) %>
+</ul>
+<p><a href="#/boards/<%= board.escape("id") %>/newlist">Add New List</p>
+
+<div>
+  <p>
+    <a href="#/">Back to Index</a>
+  </p>
+</div>

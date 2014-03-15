@@ -1,0 +1,9 @@
+<% if (board) { %>
+<form>
+  <label for="title">Board Title</label>
+  <input type="text" name="title" id="title" value="<%= board.escape("title") %>">
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>
+
+<% } %>
