@@ -60,10 +60,18 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     this._swapView(listNewView);
   },
 
-  listShow: function(board_id, id) {
-    var listShowView = new Trellino.Views.ListFormView({
-    })
-  },
+  // listShow: function(board_id, id) {
+  //   debugger
+  //   var lists = new Trellino.Collections.Lists(
+  //     [], { board: Trellino.boards.get(board_id) });
+  //   lists.fetch();
+  //
+  //   var listShowView = new Trellino.Views.ListFormView({
+  //     model: lists.get({id: id})
+  //   });
+  //
+  //   this._swapView(listShowView);
+  // },
 
   _swapView: function(view) {
     this._currentView && this._currentView.remove();

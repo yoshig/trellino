@@ -6,9 +6,9 @@
     <div class="board_members">
     <% board.lists().forEach(function(list) { %>
       <li class="board_entry">
-        <a href="#/<%= list.url() %>">
+        <span class="title">
           <%= list.escape("title") %>
-        </a>
+        </span>
         <ul>
         <% list.cards().forEach(function(card) { %>
           <li>
