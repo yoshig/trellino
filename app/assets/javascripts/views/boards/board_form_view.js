@@ -15,7 +15,7 @@ window.Trellino.Views.BoardFormView = Backbone.View.extend ({
 
   submit: function(event) {
     event.preventDefault();
-    var attrs = $(event.target.form).serializeJSON();
+    var attrs = $(event.target.form).serializeJSON()["board"];
     var success = function() {
       Backbone.history.navigate("", {trigger: true })
     };

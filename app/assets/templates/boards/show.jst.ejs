@@ -1,11 +1,28 @@
-<%= board.escape("title") %>
-<a href="#/boards/<%= board.escape("id") %>/edit">Edit This Board</a>
+<a href="#/boards/<%= board.escape("id") %>/edit">
+  <%= board.escape("title") %>
+</a>
 
-<ul>
-<% board.lists().forEach(function(list) { %>
-  <li><a href="#<%= list.url() %>"><%= list.escape("title") %></a></li>
-<% }) %>
-</ul>
+  <ul>
+    <div class="board_members">
+    <% board.lists().forEach(function(list) { %>
+      <li class="board_entry">
+        <a href="#/<%= list.url() %>">
+          <%= list.escape("title") %>
+        </a>
+        <ul>
+        <% list.cards().forEach(function(card) { %>
+          <li>
+            <%= card.escape("title") %>
+          </li>
+        <% }) %>
+        </ul>
+        </a>
+      </li>
+    <% }) %>
+    </div>
+  </ul>
+  <button class="new_list">New List</button>
+
 <p><a href="#/boards/<%= board.escape("id") %>/newlist">Add New List</p>
 
 <div>

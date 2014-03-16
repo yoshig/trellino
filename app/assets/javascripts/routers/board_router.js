@@ -10,11 +10,12 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     "boards/:id/edit": "boardsEdit",
     "boards/:id": "boardsShow",
     "boards/:board_id/newlist": "listNew",
+    "boards/:board_id/lists/:id": "listShow",
   },
 
   boardsEdit: function(id) {
     var boardFormView = new Trellino.Views.BoardFormView({
-      model: Trellino.boards.get(id)
+      model: Trellino.boards.getOrFetch(id)
     })
 
     this._swapView(boardFormView);
@@ -38,8 +39,11 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
   },
 
   boardsShow: function(id) {
+    var board = Trellino.boards.getOrFetch(id);
+    board.lists().fetch();
+
     var boardShowView = new Trellino.Views.BoardShowView({
-      model: Trellino.boards.getOrFetch(id)
+      model: board
     });
 
     this._swapView(boardShowView);
@@ -52,9 +56,13 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
       }),
       model: new Trellino.Models.List()
     });
-    debugger
 
     this._swapView(listNewView);
+  },
+
+  listShow: function(board_id, id) {
+    var listShowView = new Trellino.Views.ListFormView({
+    })
   },
 
   _swapView: function(view) {

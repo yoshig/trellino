@@ -1,4 +1,5 @@
 window.Trellino.Views.BoardIndexView = Backbone.View.extend({
+
   initialize: function() {
     this.listenTo(this.collection, "sync remove save", this.render)
   },

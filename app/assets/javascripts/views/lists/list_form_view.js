@@ -1,6 +1,10 @@
 window.Trellino.Views.ListFormView = Backbone.View.extend({
   template: JST["lists/form"],
 
+  tagName: "li",
+
+  className: "board_entry",
+
   events: {
     'click input[type="submit"]': "submit"
   },
@@ -18,7 +22,6 @@ window.Trellino.Views.ListFormView = Backbone.View.extend({
 
   submit: function(event) {
     event.preventDefault();
-    debugger
     var attrs = $(event.target.form).serializeJSON();
     var success = function() {
       Backbone.history.navigate("", {trigger: true})

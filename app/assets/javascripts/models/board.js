@@ -7,15 +7,8 @@ window.Trellino.Models.Board = Backbone.Model.extend({
         board: this
       });
     }
+
+    // this._lists.fetch();
     return this._lists
-  },
-
-  parse: function (jsonResp) {
-    if (jsonResp.lists) {
-      this.lists().set(jsonResp.lists);
-      delete jsonResp.lists;
-    }
-
-    return jsonResp;
   }
 });
