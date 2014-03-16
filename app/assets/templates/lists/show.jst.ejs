@@ -1,3 +1,14 @@
-<%= list.escape("title") %>
+<li class="board_entry">
+  <span class="title" data-list="<%= list.escape("id") %>">
+    <%= list.escape("title") %>
+  </span>
+  <form class="edit_list_title hidden" data-list="<%= list.escape("id") %>">
+    <input type="text" name="list[title]" value="<%= list.escape("title") %>">
+  </form>
 
-<a href="<%= list.board.url() %>">Back To Board</a>
+  <button class="new_card">Add Card</button>
+
+  <ul class="cards"></ul>
+
+    <button class="destroy_list">Destroy List</button>
+</li>

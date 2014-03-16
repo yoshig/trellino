@@ -1,0 +1,8 @@
+<li class="card_entry">
+  <%= card.escape("title") %>
+  <form class="edit_card_title hidden" data-card="<%= card.escape("id") %>">
+    <input type="text" name="card[title]" value="<%= card.escape("title") %>">
+  </form>
+
+  <button class="hidden destroy_list">Destroy Card</button>
+</li>

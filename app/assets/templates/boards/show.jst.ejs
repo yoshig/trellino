@@ -1,29 +1,18 @@
-<a href="#/boards/<%= board.escape("id") %>/edit">
+<div class="board_title">
+<span class="title current_title">
   <%= board.escape("title") %>
-</a>
+</span>
+  <form class="edit_board_title hidden">
+    <input type="text" name="board[title]" value="<%= board.escape("title") %>">
+  </form>
+</div>
 
-  <ul>
+  <ul class="lists">
     <div class="board_members">
-    <% board.lists().forEach(function(list) { %>
-      <li class="board_entry">
-        <span class="title">
-          <%= list.escape("title") %>
-        </span>
-        <ul>
-        <% list.cards().forEach(function(card) { %>
-          <li>
-            <%= card.escape("title") %>
-          </li>
-        <% }) %>
-        </ul>
-        </a>
-      </li>
-    <% }) %>
     </div>
   </ul>
-  <button class="new_list">New List</button>
 
-<p><a href="#/boards/<%= board.escape("id") %>/newlist">Add New List</p>
+  <div class="new_list"></div>
 
 <div>
   <p>

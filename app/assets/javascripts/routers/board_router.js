@@ -9,7 +9,7 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     "boards/new": "boardsNew",
     "boards/:id/edit": "boardsEdit",
     "boards/:id": "boardsShow",
-    "boards/:board_id/newlist": "listNew",
+    "boards/:board_id/new": "listNew",
     "boards/:board_id/lists/:id": "listShow",
   },
 
@@ -50,6 +50,7 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
   },
 
   listNew: function(board_id) {
+    debugger
     var listNewView = new Trellino.Views.ListFormView({
       collection: new Trellino.Collections.Lists({
         board: Trellino.boards.get(board_id)

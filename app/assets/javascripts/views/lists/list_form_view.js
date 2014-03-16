@@ -1,18 +1,20 @@
 window.Trellino.Views.ListFormView = Backbone.View.extend({
   template: JST["lists/form"],
 
-  tagName: "li",
+  initialize: function(options) {
+    this.board = options.board;
+  },
 
   className: "board_entry",
 
   events: {
-    'click input[type="submit"]': "submit"
+    'click .new_list': "createList"
   },
 
   render: function() {
     var content = this.template({
       list: this.model,
-      board: this.collection
+      board: this.board
     });
 
     this.$el.html(content);
@@ -20,21 +22,12 @@ window.Trellino.Views.ListFormView = Backbone.View.extend({
     return this;
   },
 
-  submit: function(event) {
-    event.preventDefault();
-    var attrs = $(event.target.form).serializeJSON();
-    var success = function() {
-      Backbone.history.navigate("", {trigger: true})
-    };
-
-    if (this.model.isNew()) {
-      this.collection.create(attrs, {
-        succes: success
-      })
-    } else {
-      this.model.save(attrs, {
-        success: success
-      });
-    }
+  createList: function() {
+    that = this
+    var attrs = { title: "New List",
+                  board_id: this.board.id,
+                  rank: this.board.lists().length + 1 }
+    var newList = new Trellino.Models.List();
+    this.board.lists().create(attrs);
   }
 })
