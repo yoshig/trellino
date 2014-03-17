@@ -1,4 +1,4 @@
-json.array! @board.lists do |list|
+json.array! @board.lists.sort{ |x,y| x.rank <=> y.rank} do |list|
   json.id list.id
   json.title list.title
   json.rank list.rank

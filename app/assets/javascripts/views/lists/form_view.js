@@ -23,10 +23,11 @@ window.Trellino.Views.ListFormView = Backbone.View.extend({
   },
 
   createList: function() {
-    that = this
+    var that = this;
+    var maxRank = this.board.lists().last().get("rank")
     var attrs = { title: "New List",
                   board_id: this.board.id,
-                  rank: this.board.lists().length + 1 }
+                  rank: Math.ceil(maxRank) }
     var newList = new Trellino.Models.List();
     this.board.lists().create(attrs);
   }

@@ -2,11 +2,17 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
   template: JST["boards/show"],
 
   initialize: function() {
+    var that = this;
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.lists(), "add", this.addList);
     this.listenTo(this.model.lists(), "remove", this.removeList);
 
-    this.model.lists().each(this.addList.bind(this));
+    this.model.lists().fetch( {
+      success: function() {
+        that.model.lists().sort();
+        that.model.lists().each(that.addList.bind(that));
+        that.listenTo(that.model.lists(), "add", that.addList);
+      }
+    })
 
     var listNewView = new Trellino.Views.ListFormView({
       board: this.model,
@@ -19,7 +25,7 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
     "dblclick div.board_title": "beginBoardEdit",
     "blur .edit_board_title": "endBoardEdit",
     "draggable li.board_entry": "moveList",
-    "drop": "setListOrder"
+    "dropList": "setListOrder"
   },
 
   moveList: function() {
@@ -63,33 +69,34 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.renderSubviews();
 
-    $('ul').sortable({
-      axis: 'x',
+    $('#sortable.lists').sortable({
+      placeholder: "list_holder",
       stop: function(event, ui) {
-        ui.item.trigger('drop',
-                        [ui.item.index(),
-                        $(ui.item.children()[0]).data("rank")])
+        ui.item.trigger('dropList', ui)
       }
     });
 
     return this;
   },
 
-  setListOrder: function(event, index, rank) {
-    debugger
-    var movedList = this.model.lists().get(rank)
-    movedList.save({ rank: index })
-    if (index > rank ){
-      for (var i = rank + 1; i <= index; i++) {
-        var list = this.model.lists().get(i)
-        list.save({ rank: i - 1 })
+  setListOrder: function(event, ui) {
+      var $list = $(ui.item)
+      var prevRank = $list.prev().find("div").data("rank")
+      var nextRank = $list.next().find("div").data("rank")
+      var listId = $list.find("span").data("list")
+      var list = this.model.lists().get({ id: listId })
+      var newRank = list.get("rank");
+      if (prevRank && nextRank) {
+        newRank = (nextRank + prevRank) / 2;
+        list.save( { rank: newRank } );
+      } else if (prevRank) {
+        newRank = (prevRank + (Math.ceil(prevRank))) / 2;
+        list.save( { rank: newRank } );
+      } else if (nextRank) {
+        newRank = nextRank / 2;
+        list.save( { rank: newRank } );
       }
-    } else {
-      for (var i = index; i <= rank - 1; i++) {
-        var list = this.model.lists().get(i)
-        list.save({ rank: i + 1 })
-      }
-    }
+      $list.find("div").data("rank", newRank);
   },
 
   showHideEdits: function() {

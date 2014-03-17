@@ -1,6 +1,7 @@
 window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
+  tagName: 'li',
   template: JST["lists/show"],
-
+  className: 'board_entry',
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.cards(), "add", this.addCard);
@@ -18,7 +19,8 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
   events: {
     "click .destroy_list": "destroyList",
     "dblclick span.title": "editTitle",
-    "blur .edit_list_title": "saveEdit"
+    "blur .edit_list_title": "saveEdit",
+    "dropCard": "setCardOrder"
   },
 
   destroyList: function() {
@@ -63,6 +65,35 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
     var content = this.template({ list: this.model });
     this.$el.html(content);
     this.renderSubviews();
+
+    $('#sortable.cards').sortable({
+      placeholder: "card_holder",
+      connectWith: "#sortable.cards",
+      stop: function(event, ui) {
+        ui.item.trigger('dropCard', ui)
+      }
+    });
+
     return this;
+  },
+
+  setCardOrder: function(event, ui) {
+      var $list = $(ui.item)
+      var prevRank = $list.prev().find("div").data("rank")
+      var nextRank = $list.next().find("div").data("rank")
+      var listId = $list.find("span").data("list")
+      var list = this.model.lists().get({ id: listId })
+      var newRank = list.get("rank");
+      if (prevRank && nextRank) {
+        newRank = (nextRank + prevRank) / 2;
+        list.save( { rank: newRank } );
+      } else if (prevRank) {
+        newRank = (prevRank + (Math.ceil(prevRank))) / 2;
+        list.save( { rank: newRank } );
+      } else if (nextRank) {
+        newRank = nextRank / 2;
+        list.save( { rank: newRank } );
+      }
+      $list.find("div").data("rank", newRank);
   }
 });

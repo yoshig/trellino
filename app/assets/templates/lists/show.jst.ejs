@@ -1,4 +1,4 @@
-<li class="board_entry" data-rank="<%= list.escape("rank") %>">
+<div data-rank="<%= list.escape("rank") %>">
   <span class="title" data-list="<%= list.escape("id") %>">
     <%= list.escape("title") %>
   </span>
@@ -8,7 +8,8 @@
 
   <div class="new_card"></div>
 
-  <ul class="cards"></ul>
+  <ul id="sortable" class="cards">
+  </ul>
 
-    <button class="destroy_list">Destroy List</button>
-</li>
+  <button class="destroy_list">Destroy List</button>
+</div>
