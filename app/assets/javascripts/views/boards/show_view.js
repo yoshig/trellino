@@ -88,14 +88,12 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
       var newRank = list.get("rank");
       if (prevRank && nextRank) {
         newRank = (nextRank + prevRank) / 2;
-        list.save( { rank: newRank } );
       } else if (prevRank) {
         newRank = (prevRank + (Math.ceil(prevRank))) / 2;
-        list.save( { rank: newRank } );
       } else if (nextRank) {
         newRank = nextRank / 2;
-        list.save( { rank: newRank } );
       }
+      list.save( { rank: newRank } );
       $list.find("div").data("rank", newRank);
   },
 

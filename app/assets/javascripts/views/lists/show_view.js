@@ -78,22 +78,64 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   setCardOrder: function(event, ui) {
-      var $list = $(ui.item)
-      var prevRank = $list.prev().find("div").data("rank")
-      var nextRank = $list.next().find("div").data("rank")
-      var listId = $list.find("span").data("list")
-      var list = this.model.lists().get({ id: listId })
-      var newRank = list.get("rank");
+      var $card = $(ui.item);
+      var prevRank = $card.prev().find("div").data("cardrank");
+      var nextRank = $card.next().find("div").data("cardrank");
+      var cardId = $card.find("div").data("card");
+
+      var board = this.model.collection.board;
+      var startListId = $card.find("div").data("list");
+      var startList = board.lists().get({ id: startListId });
+
+      var newRank;
       if (prevRank && nextRank) {
         newRank = (nextRank + prevRank) / 2;
-        list.save( { rank: newRank } );
       } else if (prevRank) {
         newRank = (prevRank + (Math.ceil(prevRank))) / 2;
-        list.save( { rank: newRank } );
       } else if (nextRank) {
         newRank = nextRank / 2;
-        list.save( { rank: newRank } );
       }
+
+      var that = this
+      startList.fetch({
+        success: function() {
+          var card = startList.cards().get({ id: cardId })
+          if (startList === that.model) {
+            card.save({ rank: newRank }, {
+              success: function() {
+                console.log(card.get("rank"))
+                console.log(card.get("list_id"))
+              }
+            });
+            $card.find("div").data("rank", newRank);
+          } else {
+            card.set("list_id", that.model.id)
+            card.save({ rank: newRank }, {
+              success: function() {
+                that.render();
+                console.log(card.get("rank"))
+                console.log(card.get("list_id"))
+              }
+            })
+          }
+        }
+      });
+
       $list.find("div").data("rank", newRank);
+
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

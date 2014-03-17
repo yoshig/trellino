@@ -1,5 +1,7 @@
 window.Trellino.Views.CardShow = Backbone.View.extend({
+  tagName: 'li',
   template: JST["cards/show"],
+  className: 'card_entry',
 
   events: {
     "mouseenter li.card_entry": "showDelete",
