@@ -17,7 +17,13 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
 
   events: {
     "dblclick div.board_title": "beginBoardEdit",
-    "blur .edit_board_title": "endBoardEdit"
+    "blur .edit_board_title": "endBoardEdit",
+    "draggable li.board_entry": "moveList",
+    "drop": "setListOrder"
+  },
+
+  moveList: function() {
+    console.log("moving")
   },
 
   beginBoardEdit: function() {
@@ -56,7 +62,34 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
     var content = this.template({ board: this.model });
     this.$el.html(content);
     this.renderSubviews();
+
+    $('ul').sortable({
+      axis: 'x',
+      stop: function(event, ui) {
+        ui.item.trigger('drop',
+                        [ui.item.index(),
+                        $(ui.item.children()[0]).data("rank")])
+      }
+    });
+
     return this;
+  },
+
+  setListOrder: function(event, index, rank) {
+    debugger
+    var movedList = this.model.lists().get(rank)
+    movedList.save({ rank: index })
+    if (index > rank ){
+      for (var i = rank + 1; i <= index; i++) {
+        var list = this.model.lists().get(i)
+        list.save({ rank: i - 1 })
+      }
+    } else {
+      for (var i = index; i <= rank - 1; i++) {
+        var list = this.model.lists().get(i)
+        list.save({ rank: i + 1 })
+      }
+    }
   },
 
   showHideEdits: function() {

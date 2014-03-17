@@ -5,6 +5,10 @@ window.Trellino.Collections.Lists = Backbone.Collection.extend({
     return this.board.url() + "/lists";
   },
 
+  comparator: function(list) {
+    return list.get("rank")
+  },
+
   initialize: function(models, options) {
     this.board = options.board
   },
