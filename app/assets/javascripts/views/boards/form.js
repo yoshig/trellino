@@ -15,19 +15,14 @@ window.Trellino.Views.BoardFormView = Backbone.View.extend ({
 
   submit: function(event) {
     event.preventDefault();
+    var that = this;
     var attrs = $(event.target.form).serializeJSON()["board"];
-    var success = function() {
-      Backbone.history.navigate("", {trigger: true })
-    };
 
-    if (this.model.isNew()) {
-      this.collection.create(attrs, {
-        success: success
-      })
-    } else {
-      this.model.save(attrs, {
-        success: success
-      });
-    }
+    this.collection.create(attrs, {
+      success: function() {
+        Backbone.history.navigate("boards/" +
+          that.collection.last().id, {trigger: true })
+      }
+    })
   }
 });

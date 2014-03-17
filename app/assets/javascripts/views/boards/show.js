@@ -54,11 +54,8 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
 
   render: function() {
     var content = this.template({ board: this.model });
-
     this.$el.html(content);
-
     this.renderSubviews();
-
     return this;
   },
 
