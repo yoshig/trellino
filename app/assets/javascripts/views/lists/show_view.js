@@ -105,8 +105,8 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
           }
         });
       } else {
-        startList.cards().remove(card);
-        this.model.cards().add(card);
+        startList.cards().remove(card, {silent: true});
+        this.model.cards().add(card, {silent: true });
         card.save({ list_id: this.model.id, rank: newRank }, {
           success: function() {
             console.log(card.get("rank"))
