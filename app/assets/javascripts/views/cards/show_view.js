@@ -1,4 +1,4 @@
-window.Trellino.Views.CardShow = Backbone.View.extend({
+window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
   tagName: 'li',
   template: JST["cards/show"],
   className: 'card_entry',
@@ -6,7 +6,23 @@ window.Trellino.Views.CardShow = Backbone.View.extend({
   events: {
     "mouseenter li.card_entry": "showDelete",
     "mouseleave li.card_entry": "hideDelete",
-    "click .destroy_card": "destroyCard"
+    "click .destroy_card": "destroyCard",
+    "dblclick .modal-title": "beginCardEdit",
+    "blur .edit_card_title": "endCardEdit"
+  },
+
+  beginCardEdit: function(event) {
+    $(event.currentTarget).find(".card_title").toggleClass("hidden")
+    $(event.currentTarget).find("form").toggleClass("hidden")
+  },
+
+  endCardEdit: function(event) {
+    debugger
+    event.preventDefault();
+    $title = this.$(event.target);
+    this.model.save({ title: $title.val() });
+    $(event.currentTarget).toggleClass("hidden")
+    $(event.currentTarget).parent().find(".card_title").toggleClass("hidden")
   },
 
   render: function() {

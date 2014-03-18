@@ -62,7 +62,6 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    // debugger
     var content = this.template({ list: this.model });
     this.$el.html(content);
     this.renderSubviews();
@@ -105,7 +104,6 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
             console.log(card.get("list_id"))
           }
         });
-        $card.find("div").data("rank", newRank);
       } else {
         startList.cards().remove(card);
         this.model.cards().add(card);
@@ -117,7 +115,7 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
         })
       }
 
-      // $card.find("div").data("rank", newRank);
+      $card.find("div.card_attrs").data("rank", newRank);
 
   }
 });

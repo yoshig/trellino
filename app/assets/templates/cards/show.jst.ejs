@@ -1,10 +1,32 @@
-<div data-card="<%= card.escape("id") %>"
+<div class = "card_attrs"
+     data-card="<%= card.escape("id") %>"
      data-cardrank="<%= card.escape("rank") %>"
-     data-list="<%= card.escape("list_id") %>">
+     data-list="<%= card.escape("list_id") %>"
+     data-toggle="modal"
+     data-target="#card_modal<%= card.escape("id") %>">
   <%= card.escape("title") %>
-  <form class="edit_card_title hidden" data-card="<%= card.escape("id") %>">
-    <input type="text" name="card[title]" value="<%= card.escape("title") %>">
-  </form>
-
   <button class="hidden card_entry destroy_card">Destroy Card</button>
+</div>
+
+
+
+
+<div class="modal fade" id="card_modal<%= card.escape("id") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="cardLabel">
+          <div class="card_title"><%= card.escape("title") %></div>
+        </h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
