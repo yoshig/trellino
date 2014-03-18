@@ -62,6 +62,7 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   render: function() {
+    // debugger
     var content = this.template({ list: this.model });
     this.$el.html(content);
     this.renderSubviews();
@@ -85,7 +86,7 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
 
       var board = this.model.collection.board;
       var startListId = $card.find("div").data("list");
-      var startList = board.lists().get({ id: startListId });
+      var startList = board.lists().get(startListId);
 
       var newRank;
       if (prevRank && nextRank) {
@@ -96,32 +97,27 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
         newRank = nextRank / 2;
       }
 
-      var that = this
-      startList.fetch({
-        success: function() {
-          var card = startList.cards().get({ id: cardId })
-          if (startList === that.model) {
-            card.save({ rank: newRank }, {
-              success: function() {
-                console.log(card.get("rank"))
-                console.log(card.get("list_id"))
-              }
-            });
-            $card.find("div").data("rank", newRank);
-          } else {
-            card.set("list_id", that.model.id)
-            card.save({ rank: newRank }, {
-              success: function() {
-                that.render();
-                console.log(card.get("rank"))
-                console.log(card.get("list_id"))
-              }
-            })
+      var card = startList.cards().get(cardId);
+      if (startList === this.model) {
+        card.save({ rank: newRank }, {
+          success: function() {
+            console.log(card.get("rank"))
+            console.log(card.get("list_id"))
           }
-        }
-      });
+        });
+        $card.find("div").data("rank", newRank);
+      } else {
+        startList.cards().remove(card);
+        this.model.cards().add(card);
+        card.save({ list_id: this.model.id, rank: newRank }, {
+          success: function() {
+            console.log(card.get("rank"))
+            console.log(card.get("list_id"))
+          }
+        })
+      }
 
-      $list.find("div").data("rank", newRank);
+      // $card.find("div").data("rank", newRank);
 
   }
 });

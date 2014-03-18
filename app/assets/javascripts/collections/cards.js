@@ -8,7 +8,7 @@ window.Trellino.Collections.Cards = Backbone.Collection.extend({
   },
 
   comparator: function(card) {
-    return card.get("rank")
+    return parseInt(card.get("rank"), 10);
   },
 
   getOrFetch: function(id) {
