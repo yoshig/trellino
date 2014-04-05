@@ -9,23 +9,14 @@
 </div>
 
 
-
-
 <div class="modal fade" id="card_modal<%= card.escape("id") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="cardLabel">
-          <div class="card_title"><%= card.escape("title") %></div>
-        </h4>
-      </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="card_title"><%= card.escape("title") %></div>
+        <form class="hidden edit_card_title">
+          <input type="text" value="<%= card.escape("title") %>"></input>
+        </form>
       </div>
     </div>
   </div>

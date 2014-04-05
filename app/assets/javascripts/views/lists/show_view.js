@@ -85,6 +85,7 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
 
       var board = this.model.collection.board;
       var startListId = $card.find("div").data("list");
+      debugger
       var startList = board.lists().get(startListId);
 
       var newRank;
@@ -119,17 +120,3 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
 
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

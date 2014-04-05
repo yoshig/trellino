@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:session_token] = user.session_token
       redirect_to root_url
     else
-      flash.now[:errors] = "Invalid login."
+      flash.now[:errors] = ["Invalid login."]
       render "new"
     end
   end

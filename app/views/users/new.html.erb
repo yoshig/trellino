@@ -1,9 +1,16 @@
-<h1>Forgot Password</h1>
+<h1>New User</h1>
 
-<form method='POST' action='<%= password_reset_url %>'>
-  <label>
-    Input Email
-    <input type='email' name='user[email]'>
-  </label>
-  <input type='submit' value='Generate New Password'>
+<form action="<%= users_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label for="email">Email</label>
+	<input id="email" type="text" name="user[email]">
+
+
+	<label for="password">Password</label>
+	<input id="password" type="password" name="user[password]">
+
+	<input id="logout" type='submit' value='Login'>
 </form>
+
+<a href="<%= new_session_url %>">Have An Account?</a>

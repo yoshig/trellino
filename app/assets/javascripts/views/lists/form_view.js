@@ -24,7 +24,8 @@ window.Trellino.Views.ListFormView = Backbone.View.extend({
 
   createList: function() {
     var that = this;
-    var maxRank = this.board.lists().last().get("rank")
+    var lastList = this.board.lists().last()
+    var maxRank =  lastList ? lastList.get("rank") : 1
     var attrs = { title: "New List",
                   board_id: this.board.id,
                   rank: Math.ceil(maxRank) }
