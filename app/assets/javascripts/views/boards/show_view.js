@@ -22,7 +22,7 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
   },
 
   events: {
-    "dblclick div.board_title": "beginBoardEdit",
+    "click .current_title": "beginBoardEdit",
     "blur .edit_board_title": "endBoardEdit",
     "draggable li.board_entry": "moveList",
     "dropList": "setListOrder"
@@ -35,6 +35,7 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
   beginBoardEdit: function() {
     var $title = this.$(".board_title");
     this.showHideEdits();
+    this.$(".edit_board_title input").focus()
 
     this.listenTo(this.model, "change", this.render);
   },
@@ -71,8 +72,12 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
 
     $('#sortable.lists').sortable({
       placeholder: "list_holder",
+      start: function(event, ui) {
+        ui.item.toggleClass('tilted');
+      },
       stop: function(event, ui) {
-        ui.item.trigger('dropList', ui)
+        ui.item.toggleClass('tilted');
+        ui.item.trigger('dropList', ui);
       }
     });
 

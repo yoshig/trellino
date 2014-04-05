@@ -99,3 +99,9 @@ button:hover, input[type="submit"]:hover {
   background-color: transparent;
   color: blue;
 }
+
+.tilted {
+  transform:rotate(5deg);
+  -ms-transform:rotate(5deg); /* IE 9 */
+  -webkit-transform:rotate(5deg); /* Opera, Chrome, and Safari */
+}

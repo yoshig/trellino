@@ -1,0 +1,16 @@
+.new_card, .card_entry {
+	margin: 3px;
+}
+
+.current_title {
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.current_title:hover {
+	background-color: #AEC3E9;
+}
+
+.edit_board_title input') {
+	font-size: '30px'
+	}

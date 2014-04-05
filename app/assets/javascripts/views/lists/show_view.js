@@ -6,7 +6,6 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.cards(), "add", this.addCard);
     this.listenTo(this.model.cards(), "remove", this.removeCard);
-    this.listenTo(this.model.cards(), "sync", this.render);
 
     this.model.cards().each(this.addCard.bind(this));
 
@@ -70,11 +69,19 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
     $('#sortable.cards').sortable({
       placeholder: "card_holder",
       connectWith: "#sortable.cards",
+      start: function(event, ui) {
+        ui.item.toggleClass('tilted');
+      },
       stop: function(event, ui) {
+        ui.item.toggleClass('tilted');
         ui.item.trigger('dropCard', ui)
       }
     });
 
+    var that = this
+    $('.modal').on('hidden', function () {
+      that.render();
+    })
     return this;
   },
 

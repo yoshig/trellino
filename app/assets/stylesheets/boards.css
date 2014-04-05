@@ -1,4 +1,4 @@
-li.list_entry, li.board_entry {
+li.list_entry, li.board_entry, .new_list {
 
   background-color: #fafafa;
   border: 1px solid #d4d4d4;
@@ -26,6 +26,11 @@ button.newBoard {
 button.newList {
   display: block;
   clear: both;
+}
+
+.edit_board_title input {
+  background-color: green;
+  font-size: 18px;
 }
 
 .list_holder {

@@ -5,11 +5,10 @@
      data-toggle="modal"
      data-target="#card_modal<%= card.escape("id") %>">
   <%= card.escape("title") %>
-  <button class="hidden card_entry destroy_card">Destroy Card</button>
 </div>
 
 
-<div class="modal fade" id="card_modal<%= card.escape("id") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="card_modal<%= card.escape("id") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-body">
@@ -17,6 +16,7 @@
         <form class="hidden edit_card_title">
           <input type="text" value="<%= card.escape("title") %>"></input>
         </form>
+        <button class="card_entry destroy_card">Destroy Card</button>
       </div>
     </div>
   </div>

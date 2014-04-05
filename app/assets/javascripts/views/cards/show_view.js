@@ -17,7 +17,6 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
   },
 
   endCardEdit: function(event) {
-    debugger
     var that = this
     var title = $(event.target)
     this.model.save({ title: $(event.target).val() }, {
@@ -37,10 +36,12 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
   },
 
   destroyCard: function(event) {
+    $('.modal').modal('hide')
     this.model.destroy();
   },
 
   showDelete: function(event) {
+    console.log("WHAT")
     $(event.target).find('button').removeClass('hidden')
   },
 

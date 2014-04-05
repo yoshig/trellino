@@ -19,7 +19,7 @@ window.Trellino.Views.CardNewView = Backbone.View.extend({
 
   createCard: function() {
     that = this
-    var attrs = { title: "New Card",
+    var attrs = { title: "New Todo",
                   description: "",
                   rank: this.list.cards().length + 1,
                   list_id: this.list.id }
