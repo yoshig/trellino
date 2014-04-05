@@ -5,10 +5,11 @@
 .current_title {
 	padding: 5px;
 	border-radius: 5px;
+	color: white;
 }
 
 .current_title:hover {
-	background-color: #AEC3E9;
+	background-color: #1e638c;
 }
 
 .edit_board_title input') {

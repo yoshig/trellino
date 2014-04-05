@@ -7,15 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <ul class="nav">
-        <li>
-          <span class="title">Trellino</span>
-        </li>
-      </ul>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav">
+          <li>
+            <span class="title">Trellino</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  </nav>
+  </div>
   <% if flash.now[:errors] %>
    <% flash.now[:errors].each do |error| %>
      <%= error %>

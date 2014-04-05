@@ -16,15 +16,14 @@ body {
   margin: 0;
   box-sizing: border-box;
   padding: 8px;
-  background-color: #daf1fb !important;
+  background-color: #23719f !important;
 }
 
 span.title {
   font-weight: 700;
-  font-size: 28px;
+  font-size: 20px;
   position: relative;
   top: 7px;
-  font-style: italic;
 }
 
 input#logout, input#logout{
@@ -37,17 +36,21 @@ div#content {
   
   padding: 10px;
   margin-bottom: 10px;
-  
-  overflow-x: scroll;
 }
 
 .white_area {
-  overflow: scroll;
   background-color: white;
-  border: 1px dotted black;
+  border: 2px black;
   border-radius: 4px;
   moz-border-radius: 4px;
   padding: 30px;
+  margin: 5px;
+  width: 300px;
+  overflow: hidden;
+}
+
+.white_area:hover {
+  background-color: #F0F0F0;
 }
 
 div.board_members {
@@ -91,7 +94,7 @@ input[type="text"] {
 button, input[type="submit"] {
   font-weight: 800;
   background: transparent;
-  border: 1px dotted;
+  border: 1px solid;
   border-radius: 8px;
 }
 
@@ -104,4 +107,10 @@ button:hover, input[type="submit"]:hover {
   transform:rotate(5deg);
   -ms-transform:rotate(5deg); /* IE 9 */
   -webkit-transform:rotate(5deg); /* Opera, Chrome, and Safari */
+}
+
+.navbar {
+  background-color: #1e638c;
+  height: 40px;
+  color: #8eb0c4;
 }
