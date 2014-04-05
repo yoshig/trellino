@@ -6,6 +6,7 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.cards(), "add", this.addCard);
     this.listenTo(this.model.cards(), "remove", this.removeCard);
+    this.listenTo(this.model.cards(), "sync", this.render);
 
     this.model.cards().each(this.addCard.bind(this));
 
@@ -85,7 +86,6 @@ window.Trellino.Views.ListShow = Backbone.CompositeView.extend({
 
       var board = this.model.collection.board;
       var startListId = $card.find("div").data("list");
-      debugger
       var startList = board.lists().get(startListId);
 
       var newRank;
