@@ -25,7 +25,6 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
     var title = $(event.target)
     this.model.save({ title: $(event.target).val() }, {
       success: function() {
-        debugger
         $(event.target).parent().toggleClass("hidden")
         var new_title = $(event.target).parent().parent().find(".card_title")
         new_title.toggleClass("hidden")
