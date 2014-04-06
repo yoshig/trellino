@@ -1,6 +1,23 @@
-.new_card, .card_entry {
+.card_entry {
 	margin: 3px;
 }
+
+.new_card {
+	width: 100%;
+}
+
+.new_card button {
+	width: 70%;
+	background-color: #0B9C53;
+	color: white;
+	border: gray;
+}
+
+.new_card button:hover {
+	background-color: green;
+}
+
+
 
 .current_title {
 	padding: 5px;
