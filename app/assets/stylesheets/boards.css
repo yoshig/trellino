@@ -23,9 +23,22 @@ li.board_entry {
 }
 
 .new_list {
+  padding: 0px;
+  margin: 3px;
   background-color: #1e638c;
   color: lightblue;
   border: 0px;
+  
+}
+
+button.new_list {
+  height: 100px;
+  width: 100%;
+  background-color: #1e638c;
+}
+
+button.new_list:hover {
+  background-color: #194f70;
 }
 
 button.newBoard {
