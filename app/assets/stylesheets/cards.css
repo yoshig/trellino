@@ -32,6 +32,10 @@ li.card_entry {
   font-weight: 700
 }
 
+li.card_entry:first-child {
+  margin-top: 15px;
+}
+
 li.placeholder {
   font-size: 15px;
   font-style: italic;

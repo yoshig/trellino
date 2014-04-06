@@ -2,14 +2,22 @@
   <span class="title" data-list="<%= list.escape("id") %>">
     <%= list.escape("title") %>
   </span>
+
+  <span class="dropdown hidden">
+    <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown"><span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1">
+      </a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1">
+        <div class="destroy_list">Destroy List</div>
+      </a></li>
+    </ul>
+  </span>
   <form class="edit_list_title hidden" data-list="<%= list.escape("id") %>">
     <input type="text" name="list[title]" value="<%= list.escape("title") %>">
   </form>
 
-  <div class="new_card"></div>
-
   <ul id="sortable" class="cards">
   </ul>
-
-  <button class="destroy_list">Destroy List</button>
+  <div class="new_card"></div>
 </div>

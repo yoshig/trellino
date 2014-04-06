@@ -25,7 +25,18 @@ window.Trellino.Views.BoardShowView = Backbone.CompositeView.extend({
     "click .current_title": "beginBoardEdit",
     "blur .edit_board_title": "endBoardEdit",
     "draggable li.board_entry": "moveList",
-    "dropList": "setListOrder"
+    "dropList": "setListOrder",
+    "mouseenter li.board_entry": "showDropdown",
+    "mouseleave li.board_entry": "hideDropdown",
+  },
+
+  // Have two separate events in case mouse enter leave is unsynced
+  showDropdown: function(event) {
+    $(event.target).find('.dropdown').removeClass('hidden');
+  },
+
+  hideDropdown: function(event) {
+    $(event.target).find('.dropdown').addClass('hidden');
   },
 
   moveList: function() {

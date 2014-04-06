@@ -30,7 +30,7 @@ li.board_entry {
 
 button.newBoard {
   display: block;
-  clear: both;
+  background-color: white;
 }
 
 button.newList {
@@ -89,3 +89,4 @@ button.newList {
 #sortable.cards {
   min-height: 30px
 }
+

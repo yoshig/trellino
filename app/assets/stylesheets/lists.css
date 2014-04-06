@@ -14,4 +14,8 @@
 
 .edit_board_title input') {
 	font-size: '30px'
-	}
+}
+
+.dropdown {
+	float: right;
+}
