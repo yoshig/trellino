@@ -57,3 +57,4 @@ group :development, :test do
 end
 
 gem 'serialize_json-rails'
+gem 'rails_12factor'
