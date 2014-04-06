@@ -25,7 +25,7 @@ li.board_entry {
 .new_list {
   padding: 0px;
   margin: 3px;
-  background-color: #1e638c;
+  background-color: #1E638C;
   color: lightblue;
   border: 0px;
   
@@ -34,11 +34,11 @@ li.board_entry {
 button.new_list {
   height: 100px;
   width: 100%;
-  background-color: #1e638c;
+  background-color: #1E638C;
 }
 
 button.new_list:hover {
-  background-color: #194f70;
+  background-color: #194F70;
 }
 
 button.newBoard {
@@ -80,7 +80,7 @@ button.newList {
 }
 
 .card_holder {
-  border: 1px solid #d4d4d4;
+  border: 1px solid #D4D4D4;
 
   text-align: center;
   font-size: 18px;

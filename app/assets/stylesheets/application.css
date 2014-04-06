@@ -100,7 +100,7 @@ button, input[type="submit"] {
 }
 
 button:hover, input[type="submit"]:hover {
-  background-color: transparent;
+  background: transparent;
   color: blue;
 }
 
