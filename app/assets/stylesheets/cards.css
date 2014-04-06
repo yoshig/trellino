@@ -101,3 +101,12 @@ span.deleteCard {
   float: right;
   
 }
+
+.cardTitle {
+  padding: 5px;
+  border-radius: 5px
+}
+
+.cardTitle:hover {
+  background-color: #D9D9D9;
+}

@@ -19,3 +19,12 @@
 .dropdown {
 	float: right;
 }
+
+.list_title {
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.list_title:hover {
+	background-color: #A8A8A8;
+}

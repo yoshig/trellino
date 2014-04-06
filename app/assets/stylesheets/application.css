@@ -115,3 +115,7 @@ button:hover, input[type="submit"]:hover {
   height: 40px;
   color: #8eb0c4;
 }
+
+.modal.fade.in, .modal.fade.out {
+  width: 400px;
+}
