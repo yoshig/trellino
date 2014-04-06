@@ -81,6 +81,11 @@ Backbone.CompositeView = Backbone.View.extend({
   }
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
   Trellino.initialize();
+});
+
+$(document).keypress(function (e) {
+  if(e.which == 13) 
+  return false;
 });
