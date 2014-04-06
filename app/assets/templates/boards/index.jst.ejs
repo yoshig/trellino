@@ -1,14 +1,15 @@
 <% boards.forEach(function(board) { %>
   <% var boardUrl =  "#/boards/" + board.escape("id") %>
-  <div class="white_area">
-    <span class="title"><a href="<%= boardUrl %>">
-      <%= board.escape("title") %>
-    </a></span>
+  <div class="board-choices">
+    <a href="<%= boardUrl %>"><div class="white_area">
+      <span class="title">
+        <%= board.escape("title") %>
+      </span>
+    </div></a>
 
-    <p><button class="destroy-board" data-id="<%= board.escape("id") %>">
+    <span><button class="destroy-board btn btn-danger" data-id="<%= board.escape("id") %>">
       Destroy Board
-    </button></p>
-  </li>
+    </button></span>
   </div>
 <% }) %>
 

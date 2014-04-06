@@ -14,3 +14,13 @@
 </form>
 
 <a href="<%= new_session_url %>">Have An Account?</a>
+
+<form action="<%= session_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" value="simis1000@gmail.com" name="user[email]">
+  <input type="hidden" value="123" name="user[password]">
+  <button id="logout" type='submit' class="btn btn-success btn-lg">
+  	Try it out <br><br>
+  	as a guest!
+  </button>
+</form>

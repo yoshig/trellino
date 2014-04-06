@@ -52,7 +52,8 @@ button.newList {
 }
 
 .destroy-board {
-  margin: 20px;
+  margin: 5px;
+  margin-bottom: 30px;
 }
 
 .edit_board_title input {
