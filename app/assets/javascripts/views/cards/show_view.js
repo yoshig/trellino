@@ -11,6 +11,10 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
     "blur .edit_card_title": "endCardEdit"
   },
 
+  initialize: function(options) {
+    this.parent = options.parent
+  },
+
   beginCardEdit: function(event) {
     $(event.currentTarget).toggleClass("hidden")
     $(event.currentTarget).parent().find("form").toggleClass("hidden")
@@ -21,10 +25,14 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
     var title = $(event.target)
     this.model.save({ title: $(event.target).val() }, {
       success: function() {
+        debugger
         $(event.target).parent().toggleClass("hidden")
         var new_title = $(event.target).parent().parent().find(".card_title")
         new_title.toggleClass("hidden")
         new_title.html(that.model.escape("title"))
+        $('.modal').on('hidden', function () {
+          that.parent.render();
+        })
       }
     });
   },
@@ -33,6 +41,7 @@ window.Trellino.Views.CardShow = Backbone.CompositeView.extend({
     var content = this.template({ card: this.model });
     this.$el.html(content);
     return this;
+    var that = this
   },
 
   destroyCard: function(event) {
