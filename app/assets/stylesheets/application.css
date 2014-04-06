@@ -16,7 +16,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   padding: 8px;
-  background-color: #23719f !important;
+  background-color: #23719F !important;
 }
 
 span.title {
@@ -111,9 +111,9 @@ button:hover, input[type="submit"]:hover {
 }
 
 .navbar {
-  background-color: #1e638c;
+  background-color: #1E638C;
   height: 40px;
-  color: #8eb0c4;
+  color: #8EB0C4;
 }
 
 .modal.fade.in, .modal.fade.out {
