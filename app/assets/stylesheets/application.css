@@ -119,3 +119,11 @@ button:hover, input[type="submit"]:hover {
 .modal.fade.in, .modal.fade.out {
   width: 400px;
 }
+
+h1 {
+  color: white !important;
+}
+
+label {
+  color: white;
+}
